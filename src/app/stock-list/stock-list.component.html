@@ -1,0 +1,27 @@
+<div>
+  <h1>Hisse Fiyat-Tarih Tablosu</h1>
+  <h2>Stock List</h2>
+  
+  <input type="text" [(ngModel)]="searchCode" placeholder="Enter stock code" />
+  <button (click)="searchStock()">Search</button>
+  
+  <table *ngIf="stockDetails.length > 0">
+    <thead>
+      <tr>
+        <th colspan="2" class="header-text">{{ stockDetails[0]?.text }}</th>
+      </tr>
+      <tr>
+        <th>Last Price</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detail of stockDetails">
+        <td>{{ detail.lastPrice }}</td>
+        <td>{{ detail.date | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <p *ngIf="stockDetails.length === 0 && searchCode">No results found.</p>
+</div>
