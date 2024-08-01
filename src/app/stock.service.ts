@@ -14,7 +14,7 @@ export class StockService {
     return this.http.get(this.apiUrl);
   }
 
-    getStockDetails(code: string): Observable<any> {
-      return this.http.get<any>(`${this.apiUrlStock}/GetStockDetails/${code}`);
-    }
+      getStockDetails(code: string): Observable<any> {
+        return this.http.get<any>(`${this.apiUrlStock}/GetStockDetails/${code}`);
+      }
 }
