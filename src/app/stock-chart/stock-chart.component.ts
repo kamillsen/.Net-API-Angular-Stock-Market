@@ -41,7 +41,7 @@ export class StockChartComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getStockDetails('ADEL').subscribe(data => {
+    this.getStockDetails('THYAO').subscribe(data => {
       const chartData = data.map(item => [
         new Date(item.date).getTime(), item.lastPrice
       ]);
