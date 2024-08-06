@@ -9,6 +9,7 @@ import { StockService } from '../stock.service';
   styleUrls: ['./stock.component.css'] // styleUrl -> styleUrls
 })
 export class StockComponent {
+ 
   constructor(private stockService: StockService) {}
 
   onFetchStockData() {
@@ -18,10 +19,12 @@ export class StockComponent {
       },
       error: (error) => {
         console.error('Veri alma hatası:', error);
+        console.error('Hata detayları:', error.error); // Hata detaylarını da kontrol edin
       },
       complete: () => {
         console.log('Veri alma işlemi tamamlandı.');
       }
     });
   }
+    
 }

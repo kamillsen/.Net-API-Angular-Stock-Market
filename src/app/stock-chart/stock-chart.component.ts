@@ -6,11 +6,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HighchartsChartModule } from 'highcharts-angular';
 import * as Highcharts from 'highcharts';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-stock-chart',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HighchartsChartModule],
+  imports: [CommonModule, RouterOutlet, HighchartsChartModule,FormsModule ],
   templateUrl: './stock-chart.component.html',
   styleUrls: ['./stock-chart.component.css']
 })
@@ -37,20 +38,27 @@ export class StockChartComponent implements OnInit {
     }]
   };
   apiUrlStock = 'https://localhost:7218/api/Stock';
+  stockCode: string = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getStockDetails('THYAO').subscribe(data => {
-      const chartData = data.map(item => [
-        new Date(item.date).getTime(), item.lastPrice
-      ]);
-      this.chartOptions.series = [{
-        type: 'line',
-        data: chartData
-      }];   
-      Highcharts.chart('container', this.chartOptions);
-    });
+    
+  }
+
+  loadStockData(): void {
+    if (this.stockCode) {
+      this.getStockDetails(this.stockCode).subscribe(data => {
+        const chartData = data.map(item => [
+          new Date(item.date).getTime(), item.lastPrice
+        ]);
+        this.chartOptions.series = [{
+          type: 'line',
+          data: chartData
+        }];   
+        Highcharts.chart('container', this.chartOptions);
+      }); 
+    }
   }
 
   getStockDetails(code: string): Observable<any[]> {

@@ -17,7 +17,7 @@ export class StockListComponent implements OnInit {
   constructor(private stockService: StockService) { }
 
   ngOnInit(): void {
-    // Bu fonksiyon bileşen ilk yüklendiğinde çalışacak.
+  
   }
 
   searchStock(): void {

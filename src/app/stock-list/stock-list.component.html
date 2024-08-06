@@ -2,7 +2,8 @@
   <h1>Hisse Fiyat-Tarih Tablosu</h1>
   <h2>Stock List</h2>
   
-  <input type="text" [(ngModel)]="searchCode" placeholder="Enter stock code" />
+  <label for="stockCode">Enter Stock Code</label> <br>
+  <input type="text" [(ngModel)]="searchCode" placeholder="e.g. AKBNK" />
   <button (click)="searchStock()">Search</button>
   
   <table *ngIf="stockDetails.length > 0">
